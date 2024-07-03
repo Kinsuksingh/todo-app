@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import './index.css'; // Import your custom CSS file (optional)
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 class TaskInput extends Component {
     state = {
@@ -34,9 +33,7 @@ class TaskInput extends Component {
                     value={newTask}
                     onChange={(e) => this.setState({ newTask: e.target.value })}
                 />
-                <button type="submit" className="btn btn-primary w-25">
-                    Add Task
-                </button>
+                <button type="submit" className="btn btn-primary w-25">Add Task</button>
             </form>
         );
     }
