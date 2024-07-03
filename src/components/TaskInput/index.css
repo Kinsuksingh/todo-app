@@ -1,0 +1,22 @@
+.form-style{
+    max-width: 1000px;
+}
+
+.label-style{
+    color: black;
+    font-family: "Roboto";
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.st{
+    font-weight: bold;
+}
+
+.inputEle-style{
+    border: solid 2px #b3b3ba;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    outline: none;
+}
