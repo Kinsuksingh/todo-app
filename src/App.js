@@ -1,55 +1,40 @@
-import React from 'react';
-import TaskInput from './components/TaskInput';
+import TaskInput from './components/TaskInput'
 import TaskList from './components/TaskList'
-import './App.css';
+import {v4 as uuidV4} from 'uuid'
+import './App.css'
+import { useState } from 'react'
 
-class App extends React.Component {
-  state = {
-    tasks: [],
-  };
-
-  addTask = (newTask) => {
-    this.setState((prevState) => ({
-      tasks: [...prevState.tasks, { id: Date.now(), text: newTask, completed: false }],
-    }));
-  };
-
-  removeTask = (taskId) => {
-    const { tasks } = this.state;
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    this.setState({ tasks: updatedTasks });
-  };
-
-  toggleTaskStatus = (taskId) => {
-    const { tasks } = this.state;
-    const updatedTasks = tasks.map((task) => {
-      return task.id===taskId? {...task, completed: !task.completed} : task
-    });
-    this.setState({ tasks: updatedTasks });
+const App = () => {
+  const [tasksList, setTasks] = useState([])
+  const addNewTask = (newTask) => {
+    const createNewTask = {
+      id: uuidV4(),
+      newTask,
+      status : false
+    }
+    setTasks([...tasksList, createNewTask])
   }
 
-  render() {
-    const {tasks} = this.state
-    return (
-      <div className="d-flex flex-column align-items-center p-5">
-        <h1 className="main-heading">Todo List</h1>
-        <div className="d-flex flex-column align-items-center w-100">
-          <TaskInput onAddTask={this.addTask} />
-          <ul className='list-style mt-5 w-100'>
-            {tasks.map((task)=> <TaskList key={task.id} taskDetails={task} removeTask={this.removeTask} toggleTaskStatus={this.toggleTaskStatus}/>)}
-          </ul>
-        </div>
-        {
-        tasks.length>0 && 
-        <div className='w-100 btn-section' >
-          <button type="button" className="btn btn-success w-25">Save Tasks</button>
-        </div>
-        }
-      </div>
-    );
+  const removeTask = (taskId) => {
+    setTasks(tasksList.filter((task) => task.id !== taskId));
+  };
+
+  const changeTaskStatus = (taskId) => {
+    setTasks(tasksList.map((task) => task.id === taskId ? {...task, status: !task.status} : task))
   }
+  
+  const editTask = (taskId, updateValue='') => {
+    setTasks(tasksList.map((task) => task.id === taskId ? {...task, newTask:updateValue} : task))
+  }
+
+  return(
+    <div className='d-flex flex-column align-items-center p-5'>
+      <h1 className="main-heading">Todo List</h1>
+      <TaskInput onAddTask={addNewTask}/>
+      <TaskList tasksList={tasksList} onRemoveTask={removeTask} onChangeTaskStatus={changeTaskStatus} onEditTask={editTask}/>
+    </div>
+  )
 }
 
-export default App;
 
-
+export default App

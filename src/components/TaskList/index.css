@@ -1,3 +1,10 @@
+.list-style{
+    list-style: none;
+    padding: 0px;
+    max-width: 1000px;
+}
+
+
 .input-st{
     margin: 3px 20px 0px 5px;
     width: 20px;
@@ -23,5 +30,24 @@
     border: none;
     background-color: transparent;
     outline: none !important;
+    margin-right: 10px;
 }
 
+.edit-input {
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 25px;
+    border: solid;
+    border-width: 0px 0px 2px 0px;
+    outline: none;
+    animation: blink 0.9s infinite alternate;
+}
+
+@keyframes blink {
+    from, to {
+        border-color:#0b75f0; /* Example border color */
+    }
+    50% {
+        border-color: transparent;
+    }
+}
