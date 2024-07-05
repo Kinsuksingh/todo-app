@@ -1,30 +1,35 @@
-# Run todo-app locally
+# Getting Started
+
+## Prerequisites to run this app
+Make sure you have Node.js and Git version control system installed on your machine. If not, you can download them from their official websites.
 
 
+## Run Todo App Locally
 
-Clone the todo-app repository
+
+**1. Clone the todo-app repository**
 
 ```bash
 git clone https://github.com/Kinsuksingh/todo-app.git
 ```
 
-Go to the project directory
+**2. Go to the project directory**
 
 ```bash
   cd todo-app
 ```
 
-Install dependencies
+**3. Install dependencies**
 
 ```bash
   npm install
 ```
 
-Start the server
+**4. Start the server**
 
 ```bash
   npm start
 ```
 
-Now you should now be able to see the todo-app application running in your web browser at http://localhost:3000.
+***You should now be able to see the todo-app application running in your web browser at http://localhost:3000.***
 
