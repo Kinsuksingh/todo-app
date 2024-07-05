@@ -63,7 +63,7 @@ const App = () => {
       <div className='align-self-start'>
         {/* Buttons to save tasks to localStorage and toggle task list visibility */}
         <button type='button' className='btn btn-success mr' onClick={handleSaveClick}>Save Tasks</button>
-        <button type='button' className='btn btn-secondary mr' onClick={onSetIsShow}>{isShow? 'Hide Tasks' : 'View Tasks'}</button>
+        <button type='button' className={isShow? 'btn btn-secondary mr' : 'btn btn-info mr'} onClick={onSetIsShow}>{isShow? 'Hide Tasks' : 'View Tasks'}</button>
       </div>
 
       {/* Conditionally render the TaskList component based on the isShow state */}

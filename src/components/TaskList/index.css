@@ -29,11 +29,19 @@
     color: rgb(34, 37, 37);
 }
 
-.custom-btn{
+.custom-edit-btn{
     border: none;
     background-color: transparent;
     outline: none !important;
     margin-right: 10px;
+}
+
+.custom-delete-btn{
+    border: none;
+    background-color: transparent;
+    outline: none !important;
+    margin-right: 10px;
+    color: red;
 }
 
 .edit-input {

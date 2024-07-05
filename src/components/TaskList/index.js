@@ -39,7 +39,7 @@ const TaskList = (props) => {
             {
                 tasksList.map((task) => (
                     <li key={task.id} className='d-flex mb-3'>
-                        <input className='checkbox-style' type="checkbox" onClick={()=> onChangeTaskStatus(task.id)}/>
+                        <input className='checkbox-style' type="checkbox" checked={task.status} onClick={()=> onChangeTaskStatus(task.id)}/>
                         <div className='d-flex justify-content-between align-items-center w-100 task-style' >
                             {/* Conditionally display task text based on its status (completed or not) */}
                             {
@@ -62,8 +62,8 @@ const TaskList = (props) => {
                             }
                             <div>
                                 {/* Button container for Edit and Delete Task */}
-                                <button type='button' className='custom-btn' disabled={isEditingTask.id===task.id || task.status} onClick={()=> handleEditingClick(task.id, task.newTask)}><FontAwesomeIcon icon={faEdit} /></button>
-                                <button type='button' className='custom-btn' onClick={() => onRemoveTask(task.id)}><FontAwesomeIcon icon={faTrashCan} /></button>
+                                <button type='button' className='custom-edit-btn' disabled={isEditingTask.id===task.id || task.status} onClick={()=> handleEditingClick(task.id, task.newTask)}><FontAwesomeIcon icon={faEdit} /></button>
+                                <button type='button' className='custom-delete-btn' onClick={() => onRemoveTask(task.id)}><FontAwesomeIcon icon={faTrashCan} /></button>
                             </div>
                         </div>
                     </li>
