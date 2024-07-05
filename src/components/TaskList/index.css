@@ -1,11 +1,14 @@
 .list-style{
     list-style: none;
     padding: 0px;
-    max-width: 1000px;
 }
 
+.todos-heading{
+    color: grey;
 
-.input-st{
+}
+
+.checkbox-style{
     margin: 3px 20px 0px 5px;
     width: 20px;
     cursor: pointer;
