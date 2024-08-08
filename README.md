@@ -33,9 +33,7 @@ git clone https://github.com/Kinsuksingh/todo-app.git
 
 ***You should now be able to see the todo-app application running in your web browser at http://localhost:3000.***
 
-**5. Deployed website is available here**
+***Deployed website is available here http://Kinsuksingh.github.io/todo-app***
 
-```bash
-  http://Kinsuksingh.github.io/todo-app
-```
+
 
