@@ -15,7 +15,7 @@ const App = () => {
   const [tasksList, setTasks] = useState(storedTodos !== null ? storedTodos:[])
 
   // State variable to store the isShow state
-  const [isShow, setIsShow] = useState(false)
+  const [isShow, setIsShow] = useState(true)
 
   // Function to toggle the visibility of the task list
   const onSetIsShow = () => {
