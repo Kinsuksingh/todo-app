@@ -107,9 +107,13 @@ const App = () => {
     },
     button: {
       marginRight: '15px',
-      marginTop: '15px',
+      marginTop: '5px',
       minWidth: '95px',
-    },
+      outline: 'none',
+      border: 'none',   // Corrected border to 'none'
+      fontSize: '25px', // Changed 'textSize' to 'fontSize' and corrected its value
+    }
+    ,
     buttonGroup: {
       alignSelf: 'start',
     },
@@ -119,7 +123,7 @@ const App = () => {
     <div style={styles.container}>
       {/* Dark Mode Toggle Button */}
       <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
-        <button type='button' className='btn btn-dark' style={styles.button} onClick={toggleDarkMode}>
+        <button type='button' className='btn' style={styles.button} onClick={toggleDarkMode}>
           {isDarkMode ? '🔆 ': <FaMoon />}
         </button>
       </div>
