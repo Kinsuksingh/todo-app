@@ -1,32 +1,72 @@
-.label-style{
+/* Light Theme */
+.label-style {
     color: black;
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     margin-bottom: 10px;
-    font-size: 30px;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-.task-label-text{
-    font-weight: bold;
-}
-
-.input-section{
+.input-section {
+    display: flex;
+    align-items: center;
     border: solid 2px #b3b3ba;
     border-radius: 5px;
     margin-bottom: 15px;
-    display: flex;
+    transition: border-color 0.3s ease;
 }
 
-.inputEle-style{
+.input-section:hover {
+    border-color: #91998e;
+}
+
+.inputEle-style {
     border: none;
     padding: 15px;
     outline: none;
     width: 100%;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    border-right: solid 1px #b3b3ba;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.custom-add-btn{
+.inputEle-style:focus {
+    background-color: #f0f4ff;
+    border-right-color: #6366f1;
+}
+
+.custom-add-btn {
     background-color: transparent;
     border: none;
     outline: none;
-    margin-right: 15px;
+    margin-right: 10px;
     font-size: 25px;
+    color: #6366f1;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-add-btn:hover {
+    color: #4f46e5;
+    transform: scale(1.1);
+}
+
+/* Dark Theme */
+.dark-label {
+    color: #f0f0f0;
+}
+
+.dark-input-section {
+    border: solid 2px #444444;
+}
+
+.dark-inputEle-style {
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+.dark-inputEle-style:focus {
+    background-color: #222222;
+    border-right-color: #4f46e5;
 }

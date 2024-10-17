@@ -11,12 +11,18 @@ const App = () => {
   const storedTodos = JSON.parse(localStorage.getItem("tasksList"));
   const [tasksList, setTasks] = useState(storedTodos !== null ? storedTodos : []);
 
-  // State variable to store the isShow state
+  // State variables to track theme and task list visibility
   const [isShow, setIsShow] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false); // New state for dark mode
 
   // Function to toggle the visibility of the task list
   const onSetIsShow = () => {
     setIsShow(!isShow);
+  };
+
+  // Function to toggle dark mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   // Function to add a new task
@@ -56,10 +62,12 @@ const App = () => {
       flexDirection: 'column',
       alignItems: 'center',
       padding: '40px',
+      backgroundColor: isDarkMode ? '#181818' : '#ffffff', // Dark mode background
+      color: isDarkMode ? '#f0f0f0' : '#000000', // Dark mode text color
+      transition: 'background-color 0.3s ease, color 0.3s ease',
     },
     heading: {
       textAlign: 'center',
-      color: 'black',
       fontFamily: 'Roboto',
       fontSize: '50px',
       fontWeight: 'bold',
@@ -77,8 +85,15 @@ const App = () => {
   return (
     <div style={styles.container}>
       <h1 style={styles.heading}>Todo List</h1>
+
+      {/* Dark Mode Toggle Button */}
+      <button type='button' className='btn btn-dark' style={styles.button} onClick={toggleDarkMode}>
+        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+      </button>
+
       {/* Task input component for adding new tasks */}
-      <TaskInput onAddTask={addNewTask} />
+      <TaskInput onAddTask={addNewTask} isDarkMode={isDarkMode} />
+
       <div style={styles.buttonGroup}>
         {/* Buttons to save tasks to localStorage and toggle task list visibility */}
         <button type='button' className='btn btn-success' style={styles.button} onClick={handleSaveClick}>
@@ -101,6 +116,7 @@ const App = () => {
           onRemoveTask={removeTask}
           onChangeTaskStatus={changeTaskStatus}
           onEditTask={editTask}
+          isDarkMode={isDarkMode} // Pass dark mode state to TaskList
         />
       )}
     </div>
