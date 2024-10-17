@@ -4,7 +4,8 @@ import TaskList from './components/TaskList';
 
 // Import libraries
 import { v4 as uuidV4 } from 'uuid'; // For unique Id generation
-import { useState, useEffect } from 'react';    // useState and useEffect hooks for managing state
+import { useState, useEffect } from 'react'; // useState and useEffect hooks for managing state
+import { FaMoon } from 'react-icons/fa'; // Import sun and moon icons from react-icons
 
 const App = () => {
   // Function to retrieve stored tasks or add dummy tasks on first load
@@ -26,12 +27,18 @@ const App = () => {
     }
   };
 
-  // State for tasks list, initialized by getInitialTasks
-  const [tasksList, setTasks] = useState(getInitialTasks());
+  // Function to retrieve the saved theme from localStorage
+  const getInitialTheme = () => {
+    const storedTheme = localStorage.getItem("theme");
+    return storedTheme === "dark" ? true : false;
+  };
 
-  // State variables for theme and task list visibility
+  // State for tasks list and theme, initialized by localStorage
+  const [tasksList, setTasks] = useState(getInitialTasks());
+  const [isDarkMode, setIsDarkMode] = useState(getInitialTheme());
+
+  // State variables for task list visibility
   const [isShow, setIsShow] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false); // New state for dark mode
 
   // Function to toggle task list visibility
   const onSetIsShow = () => {
@@ -68,9 +75,10 @@ const App = () => {
     setTasks(tasksList.map((task) => (task.id === taskId ? { ...task, newTask: updateValue } : task)));
   };
 
-  // Function to save tasks to localStorage
+  // Function to save tasks and theme to localStorage
   const handleSaveClick = () => {
     localStorage.setItem("tasksList", JSON.stringify(tasksList));
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light"); // Store theme state
   };
 
   // Save tasks to localStorage when tasksList changes
@@ -109,12 +117,14 @@ const App = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.heading}>Todo List</h1>
-
       {/* Dark Mode Toggle Button */}
-      <button type='button' className='btn btn-dark' style={styles.button} onClick={toggleDarkMode}>
-        {isDarkMode ? '🔆' : '🌜'}
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+        <button type='button' className='btn btn-dark' style={styles.button} onClick={toggleDarkMode}>
+          {isDarkMode ? '🔆 ': <FaMoon />}
+        </button>
+      </div>
+
+      <h1 style={styles.heading}>Todo List</h1>
 
       {/* Task input component for adding new tasks */}
       <TaskInput onAddTask={addNewTask} isDarkMode={isDarkMode} />
