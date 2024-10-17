@@ -35,5 +35,8 @@ git clone https://github.com/Kinsuksingh/todo-app.git
 
 ***Deployed website is available here http://Kinsuksingh.github.io/todo-app***
 
+## Screenshot
+![image](https://github.com/user-attachments/assets/ec9fda45-216f-4468-bd18-097c2d663023)
+
 
 
