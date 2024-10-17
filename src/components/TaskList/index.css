@@ -1,50 +1,45 @@
-.list-style{
+/* General styles for light theme */
+.list-style {
     list-style: none;
     padding: 0px;
-}
-
-.todos-heading{
+  }
+  
+  .todos-heading {
     color: grey;
-
-}
-
-.checkbox-style{
+  }
+  
+  .checkbox-style {
     margin: 3px 20px 0px 5px;
     width: 20px;
     cursor: pointer;
-}
-
-.task-style{
+  }
+  
+  .task-style {
     background-color: rgb(216, 239, 250);
     border: solid 5px rgb(20, 160, 83);
     border-radius: 5px;
     border-width: 0px 0px 0px 5px;
     padding: 10px;
-}
-
-.task{
+  }
+  
+  .task {
     font-weight: 500;
     font-size: 25px;
     font-family: "Roboto";
     color: rgb(34, 37, 37);
-}
-
-.custom-edit-btn{
+  }
+  
+  .custom-edit-btn, .custom-delete-btn {
     border: none;
     background-color: transparent;
     outline: none !important;
-    margin-right: 10px;
-}
-
-.custom-delete-btn{
-    border: none;
-    background-color: transparent;
-    outline: none !important;
-    margin-right: 10px;
+  }
+  
+  .custom-delete-btn {
     color: red;
-}
-
-.edit-input {
+  }
+  
+  .edit-input {
     background-color: transparent;
     border-radius: 5px;
     font-size: 25px;
@@ -52,13 +47,37 @@
     border-width: 0px 0px 2px 0px;
     outline: none;
     animation: blink 0.9s infinite alternate;
-}
-
-@keyframes blink {
+  }
+  
+  @keyframes blink {
     from, to {
-        border-color:#0b75f0; /* Example border color */
+      border-color: #0b75f0;
     }
     50% {
-        border-color: transparent;
+      border-color: transparent;
     }
-}
+  }
+  
+  /* Dark theme specific styles */
+  .dark-theme .todos-heading {
+    color: white;
+  }
+  
+  .dark-theme .task-style {
+    background-color: #333;
+    border-color: #666;
+  }
+  
+  .dark-theme .task {
+    color: #ccc;
+  }
+  
+  .dark-theme .custom-delete-btn {
+    color: #ff6b6b;
+  }
+  
+  .dark-theme .edit-input {
+    color: white;
+    border-color: #ddd;
+  }
+  

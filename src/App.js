@@ -4,18 +4,36 @@ import TaskList from './components/TaskList';
 
 // Import libraries
 import { v4 as uuidV4 } from 'uuid'; // For unique Id generation
-import { useState } from 'react';    // useState hook for managing state
+import { useState, useEffect } from 'react';    // useState and useEffect hooks for managing state
 
 const App = () => {
-  // Retrieve stored tasks from localStorage (if available) and set the initial state
-  const storedTodos = JSON.parse(localStorage.getItem("tasksList"));
-  const [tasksList, setTasks] = useState(storedTodos !== null ? storedTodos : []);
+  // Function to retrieve stored tasks or add dummy tasks on first load
+  const getInitialTasks = () => {
+    const storedTodos = JSON.parse(localStorage.getItem("tasksList"));
+    const isFirstLoad = localStorage.getItem("firstLoad");
 
-  // State variables to track theme and task list visibility
+    if (!storedTodos && !isFirstLoad) {
+      // Add two dummy tasks if it's the first load
+      const dummyTasks = [
+        { id: uuidV4(), newTask: "Learn React", status: false },
+        { id: uuidV4(), newTask: "Build a Todo App", status: false }
+      ];
+      localStorage.setItem("tasksList", JSON.stringify(dummyTasks));
+      localStorage.setItem("firstLoad", "false"); // Set the first load flag
+      return dummyTasks;
+    } else {
+      return storedTodos !== null ? storedTodos : [];
+    }
+  };
+
+  // State for tasks list, initialized by getInitialTasks
+  const [tasksList, setTasks] = useState(getInitialTasks());
+
+  // State variables for theme and task list visibility
   const [isShow, setIsShow] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false); // New state for dark mode
 
-  // Function to toggle the visibility of the task list
+  // Function to toggle task list visibility
   const onSetIsShow = () => {
     setIsShow(!isShow);
   };
@@ -40,20 +58,25 @@ const App = () => {
     setTasks(tasksList.filter((task) => task.id !== taskId));
   };
 
-  // Function to change the status (completed/incomplete) of a task by its ID
+  // Function to change task status by its ID
   const changeTaskStatus = (taskId) => {
     setTasks(tasksList.map((task) => (task.id === taskId ? { ...task, status: !task.status } : task)));
   };
 
-  // Function to edit a task by its ID and update its text
+  // Function to edit a task's text
   const editTask = (taskId, updateValue = '') => {
     setTasks(tasksList.map((task) => (task.id === taskId ? { ...task, newTask: updateValue } : task)));
   };
 
-  // Function to save the current task list to localStorage
+  // Function to save tasks to localStorage
   const handleSaveClick = () => {
     localStorage.setItem("tasksList", JSON.stringify(tasksList));
   };
+
+  // Save tasks to localStorage when tasksList changes
+  useEffect(() => {
+    localStorage.setItem("tasksList", JSON.stringify(tasksList));
+  }, [tasksList]);
 
   // Inline styles for elements
   const styles = {
@@ -65,6 +88,8 @@ const App = () => {
       backgroundColor: isDarkMode ? '#181818' : '#ffffff', // Dark mode background
       color: isDarkMode ? '#f0f0f0' : '#000000', // Dark mode text color
       transition: 'background-color 0.3s ease, color 0.3s ease',
+      height: '100%',
+      minHeight: '100vh',
     },
     heading: {
       textAlign: 'center',
@@ -88,7 +113,7 @@ const App = () => {
 
       {/* Dark Mode Toggle Button */}
       <button type='button' className='btn btn-dark' style={styles.button} onClick={toggleDarkMode}>
-        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+        {isDarkMode ? '🔆' : '🌜'}
       </button>
 
       {/* Task input component for adding new tasks */}
